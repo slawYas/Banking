@@ -14,6 +14,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+/**
+ * Implémentation de AccountService pour la gestion des comptes.
+ * Gère le dépôt, le retrait et la récupération de l'état du compte.
+ */
 @Service
 public class AccountServiceImpl implements AccountService {
 
@@ -28,6 +32,12 @@ public class AccountServiceImpl implements AccountService {
         this.transactionHelper = transactionHelper;
     }
 
+    /**
+     * Effectue un dépôt sur un compte spécifique.
+     *
+     * @param accountId l'ID du compte sur lequel effectuer le dépôt
+     * @param amount    le montant à déposer
+     */
     @Transactional
     @Override
     public void deposit(Long accountId, Double amount) {
@@ -43,6 +53,12 @@ public class AccountServiceImpl implements AccountService {
         transactionHelper.record(account, OperationType.DEPOSIT, amount, account.getBalance());
     }
 
+    /**
+     * Effectue un retrait d'un compte spécifique.
+     *
+     * @param accountId l'ID du compte sur lequel effectuer le retrait
+     * @param amount    le montant à retirer
+     */
     @Transactional
     @Override
     public void withdraw(Long accountId, Double amount) {
@@ -63,14 +79,25 @@ public class AccountServiceImpl implements AccountService {
         transactionHelper.record(account, OperationType.WITHDRAWAL, amount, account.getBalance());
     }
 
+    /**
+     * Récupère l'état actuel d'un compte.
+     *
+     * @param accountId l'ID du compte
+     * @return l'état actuel du compte sous forme d'AccountDTO
+     */
     @Override
     public AccountDTO getCurrentAccountState(Long accountId) {
         Account account = getAccountById(accountId);
         return accountMapper.accountToAccountDTO(account);
     }
 
-    @Override
-    public Account getAccountById(Long accountId) {
+    /**
+     * Récupère un compte par son ID.
+     *
+     * @param accountId l'ID du compte
+     * @return le compte
+     */
+    private Account getAccountById(Long accountId) {
         return accountRepository.findById(accountId)
                 .orElseThrow(() -> new AccountNotFoundException(accountId));
     }
