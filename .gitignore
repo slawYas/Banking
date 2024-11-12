@@ -1,0 +1,42 @@
+# Project-specific files
+target/
+build/
+
+# Optional: Ignore logs if generated
+logs/
+
+# Ignore Maven wrapper files, except maven-wrapper.jar
+.mvn/
+!.mvn/wrapper/maven-wrapper.jar
+mvnw
+mvnw.cmd
+
+# IDE-specific files
+.idea/
+*.iws
+*.iml
+*.ipr
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+# NetBeans-specific files
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Ignore temp and log files
+*.log
+*.tmp
+
+### VS Code ###
+.vscode/

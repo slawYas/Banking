@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="3-insert-initial-data" author="author">
+        <!-- Insert initial accounts -->
+        <insert tableName="account">
+            <column name="id" valueNumeric="1"/>
+            <column name="balance" valueNumeric="1000.00"/>
+        </insert>
+        <insert tableName="account">
+            <column name="id" valueNumeric="2"/>
+            <column name="balance" valueNumeric="1500.00"/>
+        </insert>
+
+        <!-- Insert initial transactions -->
+        <insert tableName="transaction">
+            <column name="id" valueNumeric="1"/>
+            <column name="date" valueDate="2024-01-01T10:00:00"/>
+            <column name="operation" value="DEPOSIT"/>
+            <column name="amount" valueNumeric="500.00"/>
+            <column name="balance_after_transaction" valueNumeric="1500.00"/>
+            <column name="account_id" valueNumeric="1"/>
+        </insert>
+        <insert tableName="transaction">
+            <column name="id" valueNumeric="2"/>
+            <column name="date" valueDate="2024-02-01T12:30:00"/>
+            <column name="operation" value="WITHDRAWAL"/>
+            <column name="amount" valueNumeric="200.00"/>
+            <column name="balance_after_transaction" valueNumeric="1300.00"/>
+            <column name="account_id" valueNumeric="1"/>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>
