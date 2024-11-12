@@ -12,7 +12,6 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.jdbc.Sql;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @ActiveProfiles("test")
@@ -39,7 +38,7 @@ class AccountControllerTest {
         ResponseEntity<Void> response = restTemplate.postForEntity("/api/v1/accounts/" + accountId + "/deposit?amount=" + amount, null, Void.class);
 
         // Then
-        assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertEquals(HttpStatus.NO_CONTENT, response.getStatusCode());
     }
 
     @Test
@@ -52,7 +51,7 @@ class AccountControllerTest {
         ResponseEntity<Void> response = restTemplate.postForEntity("/api/v1/accounts/" + accountId + "/withdraw?amount=" + amount, null, Void.class);
 
         // Then
-        assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertEquals(HttpStatus.NO_CONTENT, response.getStatusCode());
     }
 
     @Test
